@@ -1,6 +1,6 @@
-package com.educandoweb.course.repositories;
+package com.springboot.jpa.repositories;
 
-import com.educandoweb.course.entities.User;
+import com.springboot.jpa.entities.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,10 +1,10 @@
-package com.educandoweb.course.services;
+package com.springboot.jpa.services;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.educandoweb.course.entities.User;
-import com.educandoweb.course.repositories.UserRepository;
+import com.springboot.jpa.entities.User;
+import com.springboot.jpa.repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
