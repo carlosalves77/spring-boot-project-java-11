@@ -3,9 +3,11 @@ package com.springboot.jpa.config;
 import java.time.Instant;
 import java.util.Arrays;
 
+import com.springboot.jpa.entities.Category;
 import com.springboot.jpa.entities.Order;
 import com.springboot.jpa.entities.User;
 import com.springboot.jpa.enums.OrderStatus;
+import com.springboot.jpa.repositories.CategoryRepository;
 import com.springboot.jpa.repositories.OrderRepository;
 import com.springboot.jpa.repositories.UserRepository;
 
@@ -24,9 +26,18 @@ public class TestConfig implements CommandLineRunner{
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
     public void run(String... args) throws Exception {
         
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers"); 
+
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+
         User u1 = new User(null, "Maria Brown", "maria@gmail.com", "988888888", "123456");
         User u2 = new User(null, "Alex Green", "alex@gmail.com", "977777777", "123456"); 
         User u3 = new User(null, "Carlos Alves", "carlos@gmail.com", "977777777", "123456"); 
@@ -37,6 +48,7 @@ public class TestConfig implements CommandLineRunner{
                 
         userRepository.saveAll(Arrays.asList(u1, u2, u3));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+        
     }
 
 
