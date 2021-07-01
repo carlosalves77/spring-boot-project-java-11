@@ -5,10 +5,12 @@ import java.util.Arrays;
 
 import com.springboot.jpa.entities.Category;
 import com.springboot.jpa.entities.Order;
+import com.springboot.jpa.entities.OrderItem;
 import com.springboot.jpa.entities.Product;
 import com.springboot.jpa.entities.User;
 import com.springboot.jpa.enums.OrderStatus;
 import com.springboot.jpa.repositories.CategoryRepository;
+import com.springboot.jpa.repositories.OrdemItemRepository;
 import com.springboot.jpa.repositories.OrderRepository;
 import com.springboot.jpa.repositories.ProductRepository;
 import com.springboot.jpa.repositories.UserRepository;
@@ -33,6 +35,9 @@ public class TestConfig implements CommandLineRunner{
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private  OrdemItemRepository ordemItemRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -74,7 +79,14 @@ public class TestConfig implements CommandLineRunner{
                 
         
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+
+        OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice()); 
+        OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice()); 
+        OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice()); 
+        OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
         
+        ordemItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+
     }
 
 
