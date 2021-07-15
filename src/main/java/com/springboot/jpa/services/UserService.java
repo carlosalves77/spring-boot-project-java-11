@@ -3,6 +3,8 @@ package com.springboot.jpa.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import com.springboot.jpa.entities.User;
 import com.springboot.jpa.repositories.UserRepository;
 import com.springboot.jpa.services.exceptions.DatabaseException;
@@ -43,9 +45,13 @@ public class UserService {
     }
 
     public User update(Long id, User obj) {
+        try {
         User entity = repository.getById(id);
         updateData(entity, obj);
         return repository.save(entity);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException(id);
+        }
     }
 
     private void updateData(User entity, User obj) {
